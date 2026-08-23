@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -17,8 +18,9 @@ function Navbar() {
 </div>
 
         <div className="navbar-links">
-          <a href="#home">Home</a>
+          <Link to="/">Home</Link>
           <a href="#destinations">Destinations</a>
+          <Link to="/ai-budget-planner">AI Budget Planner</Link>
           <a href="#stays">Stays</a>
           <a href="#about">About</a>
         </div>
