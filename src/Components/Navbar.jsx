@@ -1,6 +1,5 @@
 import React from "react";
-
-
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -17,10 +16,10 @@ function Navbar() {
 </div>
 
         <div className="navbar-links">
-          <a href="#home">Home</a>
-          <a href="#destinations">Destinations</a>
-          <a href="#stays">Stays</a>
-          <a href="#about">About</a>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/destinations">Destinations</NavLink>
+          <NavLink to="/stays">Stays</NavLink>
+          <NavLink to="/about">About</NavLink>
         </div>
 
         <div className="navbar-actions">

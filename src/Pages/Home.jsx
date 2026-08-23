@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function Hero() {
+function Home() {
   return (
     <section className="hero">
 
@@ -41,4 +41,4 @@ function Hero() {
   );
 }
 
-export default Hero;
+export default Home;

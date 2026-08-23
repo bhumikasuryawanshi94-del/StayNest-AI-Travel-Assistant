@@ -235,7 +235,7 @@ body {
 
 
 
-/**** Hero ****/
+/**** Home page****/
 
 .hero {
   position: relative;
@@ -373,3 +373,325 @@ body {
     font-size: 14px;
   }
 }
+
+/* =========================
+   POPULAR SECTION
+========================= */
+
+.popular-section {
+  width: 100%;
+  margin: 40px 0;
+}
+
+.popular-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.popular-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
+}
+
+.section-arrow {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #f2f2f2;
+  font-size: 22px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.section-arrow:hover {
+  background: #e5e5e5;
+  transform: scale(1.05);
+}
+
+
+/* =========================
+   PROPERTIES CONTAINER
+========================= */
+
+.properties-container {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.properties-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================
+   PROPERTY CARD
+========================= */
+
+.property-card {
+  flex: 0 0 250px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-3px);
+}
+
+
+/* =========================
+   PROPERTY IMAGE
+========================= */
+
+.property-image-container {
+  position: relative;
+  width: 250px;
+  height: 220px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #eee;
+}
+
+.property-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-image {
+  transform: scale(1.03);
+}
+
+
+/* =========================
+   HEART BUTTON
+========================= */
+
+.heart-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 25px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.heart-button:hover {
+  transform: scale(1.1);
+  background: white;
+}
+
+.heart-button.liked {
+  color: #ff385c;
+}
+
+
+/* =========================
+   GUEST FAVOURITE
+========================= */
+
+.guest-favourite {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   PROPERTY INFO
+========================= */
+
+.property-info {
+  padding: 10px 3px 0;
+}
+
+.property-info h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.property-location {
+  margin: 0 0 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+.property-price {
+  margin: 0;
+  font-size: 14px;
+  color: #222;
+}
+
+.property-price::first-letter {
+  font-weight: 600;
+}
+
+
+/* =========================
+   RATING
+========================= */
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.star {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 17px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.star.active {
+  color: #f5b800;
+}
+
+.rating-text {
+  font-size: 12px;
+  color: #666;
+}
+
+
+/* =========================
+   STAYS PAGE
+========================= */
+
+.stays-page {
+  padding: 30px 50px;
+}
+
+
+/* Heading + Search */
+
+.stays-heading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.stays-heading h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  color: #222;
+}
+
+
+/* =========================
+   SEARCH BAR
+========================= */
+
+.stay-search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+}
+
+.stay-search input {
+  width: 100%;
+  padding: 12px 18px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  background: white;
+  transition: 0.2s ease;
+}
+
+.stay-search input:focus {
+  border-color: #f5b400;
+  box-shadow: 0 0 8px rgba(245, 180, 0, 0.25);
+}
+
+
+/* =========================
+   NO RESULTS
+========================= */
+
+.no-results {
+  text-align: center;
+  margin-top: 40px;
+  color: #777;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .stays-page {
+    padding: 20px;
+  }
+
+  .stays-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .stays-heading h1 {
+    font-size: 28px;
+  }
+
+  .stay-search {
+    position: static;
+    transform: none;
+    width: 100%;
+  }
+
+  .popular-header h2 {
+    font-size: 20px;
+  }
+
+  .property-card {
+    flex: 0 0 210px;
+  }
+
+  .property-image-container {
+    width: 210px;
+    height: 190px;
+  }
+}
+

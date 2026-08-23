@@ -1,20 +1,26 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import Hero from "./Pages/Hero";
+import Home from "./Pages/Home";
 import Footer from "./Components/Footer";
-import "./App.css";
+import { AppLayout } from "./Components/AppLayout";
+import Stays from "./Pages/Stays";
 
 function App() {
   return (
-    <>
-      <Navbar />
+    <BrowserRouter>
+    <Routes>
 
-      <main>
-        <Hero />
-      </main>
+      <Route element={<AppLayout />}>
 
-      <Footer />
-    </>
+        {/* Home Page */}
+        <Route path="/" element={<Home />}/>
+        <Route path="/stays" element={<Stays />} />
+        
+      </Route>
+
+    </Routes>
+    </BrowserRouter>
   );
 }
 
