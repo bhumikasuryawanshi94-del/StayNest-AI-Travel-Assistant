@@ -1,7 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-
-function Hero() {
+function Home() {
+  const navigate = useNavigate()
   return (
     <section className="hero">
 
@@ -26,12 +27,16 @@ function Hero() {
         </p>
 
         <div className="hero-buttons">
-          <button className="explore-button">
-            Explore Destinations
+          <button className="explore-button"
+          onClick={() => navigate("/stays")}
+          >
+            Explore
           </button>
 
-          <button className="ai-hero-button">
-            ✨ Plan with AI
+          <button className="ai-hero-button"
+          onClick={() => navigate("/ai-budget-planner")}
+          >
+          ✨ Plan with AI
           </button>
         </div>
 
@@ -41,4 +46,4 @@ function Hero() {
   );
 }
 
-export default Hero;
+export default Home;

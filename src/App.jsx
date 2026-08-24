@@ -1,45 +1,31 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Navbar from "./Components/Navbar";
-import Hero from "./Pages/Hero";
-import Footer from "./Components/Footer";
+import { AppLayout } from "./Components/AppLayout";
+
+import Home from "./Pages/Home";
+import Stays from "./Pages/Stays";
 import AIBudgetPlanner from "./Pages/AIBudgetPlanner";
-
-import "./App.css";
-
-function Home() {
-  return (
-    <>
-      <Navbar />
-
-      <main>
-        <Hero />
-      </main>
-
-      <Footer />
-    </>
-  );
-}
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route element={<AppLayout />}>
 
-        <Route path="/" element={<Home />} />
+          {/* Home Page */}
+          <Route path="/" element={<Home />} />
 
-        <Route
-          path="/ai-budget-planner"
-          element={
-            <>
-              <Navbar />
-              <AIBudgetPlanner />
-              <Footer />
-            </>
-          }
-        />
+          {/* Stays Page */}
+          <Route path="/stays" element={<Stays />} />
 
+          {/* AI Budget Planner Page */}
+          <Route
+            path="/ai-budget-planner"
+            element={<AIBudgetPlanner />}
+          />
+
+        </Route>
       </Routes>
     </BrowserRouter>
   );

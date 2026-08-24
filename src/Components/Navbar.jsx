@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
-
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -18,16 +18,17 @@ function Navbar() {
 </div>
 
         <div className="navbar-links">
-          <Link to="/">Home</Link>
-          <a href="#destinations">Destinations</a>
-          <Link to="/ai-budget-planner">AI Budget Planner</Link>
-          <a href="#stays">Stays</a>
-          <a href="#about">About</a>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/ai-budget-planner">AI Budget Planner</NavLink>
+          <NavLink to="/stays">Stays</NavLink>
+          <NavLink to="/about">About</NavLink>
         </div>
 
         <div className="navbar-actions">
-          <button className="ai-button">
-            ✨ AI Travel Assistant
+          <button className="ai-button"
+          onClick={() => navigate("/ai-budget-planner")}
+          >
+          ✨ AI Budget Planner
           </button>
 
           <button className="login-button">
