@@ -19,8 +19,8 @@ function Navbar() {
 
         <div className="navbar-links">
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/ai-budget-planner">AI Budget Planner</NavLink>
           <NavLink to="/stays">Stays</NavLink>
+          <NavLink to="/my-bookings">My Bookings</NavLink>
           <NavLink to="/about">About</NavLink>
         </div>
 
