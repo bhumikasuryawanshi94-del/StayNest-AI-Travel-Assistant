@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 function AIBudgetPlanner() {
   const [destination, setDestination] = useState("");
   const [travelers, setTravelers] = useState(1);
@@ -8,27 +7,31 @@ function AIBudgetPlanner() {
   const [budget, setBudget] = useState(10000);
 
   const [result, setResult] = useState(null);
+  const [aiExplanation, setAiExplanation] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handlePlanTrip = async () => {
     setLoading(true);
     setResult(null);
+    setAiExplanation("");
     setError("");
 
     try {
       const response = await fetch(
-          "http://localhost:5000/api/plan-trip",
+        "http://localhost:5000/api/ai/budget-plan",
         {
           method: "POST",
+
           headers: {
             "Content-Type": "application/json",
           },
+
           body: JSON.stringify({
             destination,
-            travelers,
+            members: travelers,
             days,
-            budget,
+            totalBudget: budget,
           }),
         }
       );
@@ -41,31 +44,26 @@ function AIBudgetPlanner() {
         );
       }
 
-      // Get the actual result from Dify
-      const resultText = data.data.outputs.result;
+      // Budget calculated by backend
+      const parsed = {
+        Stay: data.breakdown.stay,
+        Food: data.breakdown.food,
+        Transport: data.breakdown.transport,
+        Buffer: data.breakdown.buffer,
 
-      // Convert Dify text into usable values
-      const lines = resultText.split("\n");
-
-      const parsed = {};
-
-      lines.forEach((line) => {
-        const parts = line.split(":");
-
-        if (parts.length >= 2) {
-          const key = parts[0].trim();
-          const value = parts
-            .slice(1)
-            .join(":")
-            .replace("₹", "")
-            .replace(/,/g, "")
-            .trim();
-
-          parsed[key] = Number(value);
-        }
-      });
+        Total:
+          data.breakdown.stay +
+          data.breakdown.food +
+          data.breakdown.transport +
+          data.breakdown.buffer,
+      };
 
       setResult(parsed);
+
+      // Gemini-generated explanation
+      setAiExplanation(
+        data.aiExplanation || ""
+      );
 
     } catch (error) {
       console.error(error);
@@ -76,12 +74,13 @@ function AIBudgetPlanner() {
   };
 
   const total =
-    result?.Total ||
-    result?.Stay +
-      result?.Food +
-      result?.Transport +
-      result?.Buffer ||
-    0;
+    result?.Total ??
+    (
+      (result?.Stay || 0) +
+      (result?.Food || 0) +
+      (result?.Transport || 0) +
+      (result?.Buffer || 0)
+    );
 
   const stayPercent = total
     ? (result?.Stay / total) * 100
@@ -122,7 +121,9 @@ function AIBudgetPlanner() {
             type="text"
             placeholder="e.g. Goa, Manali, Mumbai"
             value={destination}
-            onChange={(e) => setDestination(e.target.value)}
+            onChange={(e) =>
+              setDestination(e.target.value)
+            }
           />
         </div>
 
@@ -136,7 +137,9 @@ function AIBudgetPlanner() {
               min="1"
               value={travelers}
               onChange={(e) =>
-                setTravelers(Number(e.target.value))
+                setTravelers(
+                  Number(e.target.value)
+                )
               }
             />
           </div>
@@ -174,7 +177,9 @@ function AIBudgetPlanner() {
           onClick={handlePlanTrip}
           disabled={loading}
         >
-          {loading ? "Creating Your Plan..." : "Plan My Trip"}
+          {loading
+            ? "Creating Your Plan..."
+            : "Plan My Trip"}
         </button>
 
       </div>
@@ -191,7 +196,9 @@ function AIBudgetPlanner() {
         <div className="result-section">
 
           <div className="result-title">
-            <h2>Your {destination} Budget Plan</h2>
+            <h2>
+              Your {destination} Budget Plan
+            </h2>
 
             <p>
               {days} days • {travelers} traveler
@@ -202,8 +209,13 @@ function AIBudgetPlanner() {
           {/* Total */}
           <div className="total-card">
             <div>
-              <span>Total Estimated Budget</span>
-              <h2>₹{total.toLocaleString("en-IN")}</h2>
+              <span>
+                Total Estimated Budget
+              </span>
+
+              <h2>
+                ₹{total.toLocaleString("en-IN")}
+              </h2>
             </div>
 
             <div className="total-icon">
@@ -216,45 +228,80 @@ function AIBudgetPlanner() {
 
             <div className="budget-card stay">
               <span>🏨</span>
+
               <p>Stay</p>
+
               <h3>
-                ₹{result.Stay?.toLocaleString("en-IN")}
+                ₹
+                {result.Stay?.toLocaleString(
+                  "en-IN"
+                )}
               </h3>
             </div>
 
             <div className="budget-card food">
               <span>🍴</span>
+
               <p>Food</p>
+
               <h3>
-                ₹{result.Food?.toLocaleString("en-IN")}
+                ₹
+                {result.Food?.toLocaleString(
+                  "en-IN"
+                )}
               </h3>
             </div>
 
             <div className="budget-card transport">
               <span>🚗</span>
+
               <p>Transport</p>
+
               <h3>
-                ₹{result.Transport?.toLocaleString("en-IN")}
+                ₹
+                {result.Transport?.toLocaleString(
+                  "en-IN"
+                )}
               </h3>
             </div>
 
             <div className="budget-card buffer">
               <span>🛡️</span>
+
               <p>Buffer</p>
+
               <h3>
-                ₹{result.Buffer?.toLocaleString("en-IN")}
+                ₹
+                {result.Buffer?.toLocaleString(
+                  "en-IN"
+                )}
               </h3>
             </div>
 
           </div>
+
+          {/* AI Explanation */}
+          {aiExplanation && (
+            <div className="ai-explanation-card">
+
+              <h2>✨ AI Travel Insight</h2>
+
+              <p>
+                {aiExplanation}
+              </p>
+
+            </div>
+          )}
 
           {/* Chart Section */}
           <div className="chart-card">
 
             <div>
               <h2>Budget Breakdown</h2>
+
               <p>
-                See where your travel budget is allocated.
+                See where your travel budget is
+                allocated.
               </p>
 
               <div className="legend">
@@ -295,10 +342,13 @@ function AIBudgetPlanner() {
               }}
             >
               <div className="pie-center">
+
                 <span>Total</span>
+
                 <strong>
                   ₹{total.toLocaleString("en-IN")}
                 </strong>
+
               </div>
             </div>
 
