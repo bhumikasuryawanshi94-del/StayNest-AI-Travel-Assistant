@@ -42,7 +42,7 @@ function PopularSection({ city, listings }) {
         {listings.map((listing) => (
 
           <PropertyCard
-            key={listing.title}
+            key={listing._id}
             listing={listing}
           />
 

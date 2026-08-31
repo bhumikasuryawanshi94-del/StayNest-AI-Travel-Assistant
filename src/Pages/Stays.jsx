@@ -1,9 +1,39 @@
-import React, { useState } from "react";
-import listings from "../api/listings.json";
+import React, { useEffect, useState } from "react";
 import PopularSection from "../Components/PopularSection";
 
 function Stays() {
   const [search, setSearch] = useState("");
+  const [listings, setListings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // Fetch listings from StayNest backend
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/listings"
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error || "Unable to fetch listings"
+          );
+        }
+
+        setListings(data.listings);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+        setError("Unable to load stays.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchListings();
+  }, []);
 
   // Filter listings by city, hotel name or price
   const filteredListings = listings.filter((listing) => {
@@ -21,6 +51,26 @@ function Stays() {
     ...new Set(filteredListings.map((listing) => listing.city)),
   ];
 
+  // Loading state
+  if (loading) {
+    return (
+      <div className="stays-page">
+        <h1>Explore Stays</h1>
+        <p>Loading stays...</p>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="stays-page">
+        <h1>Explore Stays</h1>
+        <p className="no-results">{error}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="stays-page">
 
@@ -30,10 +80,10 @@ function Stays() {
 
         <div className="stay-search">
           <input
-          type="text"
-          placeholder="Search city, hotel or price..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            placeholder="Search city, hotel or price..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
       </div>
@@ -62,3 +112,4 @@ function Stays() {
 }
 
 export default Stays;
+

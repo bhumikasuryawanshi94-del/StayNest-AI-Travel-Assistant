@@ -9,11 +9,11 @@ function PropertyCard({ listing }) {
   useEffect(() => {
 
     const savedLiked = localStorage.getItem(
-      `liked_${listing.title}`
+      `liked_${listing._id}`
     );
 
     const savedRating = localStorage.getItem(
-      `rating_${listing.title}`
+      `rating_${listing._id}`
     );
 
     if (savedLiked === "true") {
@@ -24,7 +24,7 @@ function PropertyCard({ listing }) {
       setUserRating(Number(savedRating));
     }
 
-  }, [listing.title]);
+  }, [listing._id]);
 
 
   // Heart
@@ -35,7 +35,7 @@ function PropertyCard({ listing }) {
     setLiked(newLiked);
 
     localStorage.setItem(
-      `liked_${listing.title}`,
+      `liked_${listing._id}`,
       newLiked
     );
   };
@@ -47,7 +47,7 @@ function PropertyCard({ listing }) {
     setUserRating(rating);
 
     localStorage.setItem(
-      `rating_${listing.title}`,
+      `rating_${listing._id}`,
       rating
     );
   };
@@ -148,3 +148,4 @@ function PropertyCard({ listing }) {
 }
 
 export default PropertyCard;
+
