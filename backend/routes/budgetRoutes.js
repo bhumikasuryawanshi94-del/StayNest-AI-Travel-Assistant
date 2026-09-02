@@ -1,11 +1,11 @@
 const express = require("express");
 
 const {
-  getBudgetPlan,
-} = require("../controllers/aiController");
+  planTrip,
+} = require("../controllers/budgetController");
 
 const router = express.Router();
 
-router.post("/budget-plan", getBudgetPlan);
+router.post("/", planTrip);
 
 module.exports = router;

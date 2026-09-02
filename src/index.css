@@ -402,54 +402,54 @@ body {
 }
 
 
-
-
-/**** AIBudgetPlanner.CSS ****/
+/* ================================
+   AI BUDGET PLANNER
+================================ */
 
 .budget-page {
-  min-height: 100vh;
-  padding: 60px 8%;
-
-  background-image:
-    linear-gradient(
-      rgba(15, 23, 42, 0.58),
-      rgba(15, 23, 42, 0.58)
-    ),
-    url("/ai-budget-bg.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 24px 80px;
 }
+
+/* Header */
 
 .budget-header {
   text-align: center;
   margin-bottom: 35px;
-  color: white;
+}
+
+.budget-badge {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 30px;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
 .budget-header h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
-  color: white;
-  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+  margin: 0;
+  font-size: 38px;
+  color: #171717;
 }
 
 .budget-header p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 18px;
+  margin-top: 10px;
+  color: #6b7280;
+  font-size: 16px;
 }
 
+/* Planner Card */
+
 .planner-card {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 35px;
-  background: rgba(255, 255, 255, 0.94);
-  border-radius: 24px;
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(10px);
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
 .input-group {
@@ -459,114 +459,145 @@ body {
 }
 
 .input-group label {
-  display: block;
-  margin-bottom: 6px;
+  font-size: 14px;
   font-weight: 600;
-  color: #1f2937;
+  color: #374151;
 }
 
 .input-group input {
   width: 100%;
-  padding: 13px 15px;
+  box-sizing: border-box;
+  padding: 13px 14px;
   border: 1px solid #d1d5db;
   border-radius: 10px;
-  font-size: 15px;
   outline: none;
-  box-sizing: border-box;
-  transition: all 0.25s ease;
+  font-size: 15px;
+  transition: 0.2s;
 }
 
 .input-group input:focus {
   border-color: #4f46e5;
-  box-shadow:
-    0 0 0 3px rgba(79, 70, 229, 0.12);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.destination-input {
+  margin-bottom: 20px;
 }
 
 .input-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 20px;
+  gap: 16px;
 }
+
+.budget-input {
+  position: relative;
+}
+
+.budget-input span {
+  position: absolute;
+  left: 14px;
+  top: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.budget-input input {
+  padding-left: 32px;
+}
+
+/* Button */
 
 .plan-button {
   width: 100%;
-  margin-top: 25px;
-  padding: 15px;
+  margin-top: 22px;
+  padding: 14px;
   border: none;
-  border-radius: 12px;
+  border-radius: 11px;
   background: #4f46e5;
   color: white;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.2s;
 }
 
 .plan-button:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 10px 25px rgba(79, 70, 229, 0.35);
+  background: #4338ca;
+  transform: translateY(-1px);
 }
 
 .plan-button:disabled {
-  opacity: 0.7;
+  opacity: 0.65;
   cursor: not-allowed;
   transform: none;
 }
 
-.error-box {
-  max-width: 900px;
-  margin: 25px auto;
-  padding: 15px;
-  background: #fee2e2;
-  color: #991b1b;
+/* Error */
+
+.budget-error {
+  margin-top: 20px;
+  padding: 13px 16px;
   border-radius: 10px;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
 }
+
+/* Results */
 
 .result-section {
-  max-width: 1100px;
-  margin: 50px auto 0;
+  margin-top: 45px;
 }
 
-.result-title {
-  text-align: center;
-  color: white;
-  margin-bottom: 25px;
+.result-heading {
+  margin-bottom: 20px;
 }
 
-.result-title h2 {
-  color: white;
-  font-size: 30px;
-  margin-bottom: 8px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+.result-label {
+  color: #4f46e5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-.result-title p {
-  color: white;
-  font-size: 16px;
+.result-heading h2 {
+  margin: 7px 0 4px;
+  font-size: 27px;
+}
+
+.result-heading p {
   margin: 0;
-  opacity: 0.95;
+  color: #6b7280;
 }
+
+/* Total Card */
 
 .total-card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #111827;
-  color: white;
-  padding: 28px;
+  justify-content: space-between;
+  padding: 27px 30px;
   border-radius: 18px;
-  margin-bottom: 25px;
+  background: #4f46e5;
+  color: white;
+  box-shadow: 0 12px 30px rgba(79, 70, 229, 0.2);
 }
 
 .total-card span {
-  color: #d1d5db;
+  font-size: 14px;
+  opacity: 0.85;
 }
 
 .total-card h2 {
-  font-size: 34px;
-  margin: 8px 0 0;
+  margin: 5px 0;
+  font-size: 32px;
+}
+
+.total-card p {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.8;
 }
 
 .total-icon {
@@ -575,77 +606,99 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  color: #111827;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
   font-size: 25px;
-  font-weight: bold;
+  font-weight: 700;
 }
+
+/* Budget Cards */
 
 .budget-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .budget-card {
   background: white;
-  padding: 22px;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.budget-card-icon {
+  font-size: 22px;
+  margin-bottom: 12px;
 }
 
 .budget-card span {
-  font-size: 28px;
-}
-
-.budget-card p {
+  font-size: 13px;
   color: #6b7280;
-  margin-bottom: 5px;
 }
 
 .budget-card h3 {
-  font-size: 23px;
-  margin-top: 5px;
-  color: #1f2937;
+  margin: 6px 0 0;
+  font-size: 20px;
+  color: #171717;
 }
 
-.chart-card {
-  margin-top: 25px;
+/* Breakdown */
+
+.breakdown-card {
+  margin-top: 20px;
+  padding: 28px;
   background: white;
-  padding: 35px;
+  border: 1px solid #e5e7eb;
   border-radius: 18px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  gap: 40px;
 }
 
-.chart-card h2 {
-  margin-bottom: 5px;
+.breakdown-info {
+  flex: 1;
 }
 
-.chart-card p {
+.breakdown-info h2 {
+  margin: 7px 0;
+  font-size: 22px;
+}
+
+.breakdown-info > p {
   color: #6b7280;
+  font-size: 14px;
 }
 
-.legend {
-  margin-top: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* Legend */
+
+.budget-legend {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
 }
 
-.legend div {
+.budget-legend div {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  font-size: 13px;
 }
+
+.budget-legend strong {
+  margin-left: auto;
+}
+
+/* Dots */
 
 .legend-dot {
-  width: 12px;
-  height: 12px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
+  display: inline-block;
 }
 
 .stay-dot {
@@ -664,36 +717,132 @@ body {
   background: #ef4444;
 }
 
+/* Pie Chart */
+
 .pie-chart {
-  width: 260px;
-  height: 260px;
+  width: 210px;
+  height: 210px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .pie-center {
-  width: 145px;
-  height: 145px;
+  width: 125px;
+  height: 125px;
   background: white;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .pie-center span {
+  font-size: 12px;
   color: #6b7280;
-  font-size: 14px;
 }
 
 .pie-center strong {
-  font-size: 19px;
-  margin-top: 5px;
+  margin-top: 4px;
+  font-size: 17px;
 }
 
+/* Recommendation */
+
+.recommendation-card {
+  margin-top: 20px;
+  padding: 24px;
+  border-radius: 18px;
+  background: #eef2ff;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.recommendation-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.recommendation-card h2 {
+  margin: 6px 0;
+  font-size: 20px;
+}
+
+.recommendation-card p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* Recommended Stays */
+
+.recommended-section {
+  margin-top: 40px;
+}
+
+.section-heading h2 {
+  margin: 6px 0 18px;
+  font-size: 25px;
+}
+
+.recommended-list {
+  display: grid;
+  gap: 12px;
+}
+
+.recommended-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.recommended-card h3 {
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+
+.recommended-card p {
+  margin: 0 0 7px;
+  font-weight: 600;
+}
+
+.recommended-card span {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.recommended-card button {
+  border: 1px solid #4f46e5;
+  background: white;
+  color: #4f46e5;
+  padding: 9px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.recommended-card button:hover {
+  background: #4f46e5;
+  color: white;
+}
+
+/* RESPONSIVE */
 @media (max-width: 800px) {
   .input-row {
     grid-template-columns: 1fr;
@@ -703,48 +852,62 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .chart-card {
+  .breakdown-card {
     flex-direction: column;
-    gap: 35px;
-    text-align: center;
+    align-items: stretch;
+  }
+
+  .pie-chart {
+    margin: 10px auto 0;
   }
 }
 
 @media (max-width: 500px) {
-  .budget-cards {
-    grid-template-columns: 1fr;
-  }
-
   .budget-page {
-    padding: 40px 20px;
+    padding: 30px 15px 60px;
   }
 
   .budget-header h1 {
-    font-size: 32px;
+    font-size: 30px;
   }
-}
 
-/* AI explaination */
-.ai-explanation-card {
-  margin-top: 25px;
-  padding: 28px 30px;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  border-left: 5px solid #4f46e5;
-}
+  .planner-card {
+    padding: 20px;
+  }
 
-.ai-explanation-card h2 {
-  margin: 0 0 12px;
-  color: #1f2937;
-  font-size: 22px;
-}
+  .budget-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
 
-.ai-explanation-card p {
-  margin: 0;
-  color: #4b5563;
-  font-size: 16px;
-  line-height: 1.7;
+  .budget-card {
+    padding: 15px;
+  }
+
+  .total-card {
+    padding: 22px;
+  }
+
+  .total-card h2 {
+    font-size: 25px;
+  }
+
+  .total-icon {
+    display: none;
+  }
+
+  .budget-legend {
+    grid-template-columns: 1fr;
+  }
+
+  .recommended-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .recommended-card button {
+    width: 100%;
+  }
 }
 
 

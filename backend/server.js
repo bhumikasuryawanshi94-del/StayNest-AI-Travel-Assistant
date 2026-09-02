@@ -3,9 +3,10 @@ const cors = require("cors");
 require("dotenv").config();
 
 const connectDB = require("./config/db");
-const errorHandler = require("./middleware/errorHandler");
-const aiRoutes = require("./routes/aiRoutes");
+// const errorHandler = require("./middleware/errorHandler");
 const listingRoutes = require("./routes/listingRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
+const budgetRoutes = require("./routes/budgetRoutes");
 
 const app = express();
 
@@ -23,14 +24,18 @@ app.get("/", (req, res) => {
   });
 });
 
-// Error Handler
-app.use(errorHandler);
-
-// AI Budget Planner
-app.use("/api/ai", aiRoutes);
+// // Error Handler
+// app.use(errorHandler);
 
 // Listings
 app.use("/api/listings", listingRoutes);
+
+// Bookings
+app.use("/api/bookings", bookingRoutes);
+
+// AI Budget Planner
+app.use("/api/ai/plan-trip", budgetRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
