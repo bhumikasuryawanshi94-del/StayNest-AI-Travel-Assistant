@@ -1,8 +1,10 @@
-import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/authContextValue";
 
 function Navbar() {
   const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <nav className="navbar">
@@ -31,13 +33,22 @@ function Navbar() {
           ✨ AI Budget Planner
           </button>
 
-          <button className="login-button">
-            Login
-          </button>
-
-          <button className="signup-button">
-            Sign Up
-          </button>
+          {user ? (
+            <>
+              <button className="login-button" onClick={() => { logout(); navigate("/"); }}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="login-button" onClick={() => navigate("/login")}>
+                Login
+              </button>
+              <button className="signup-button" onClick={() => navigate("/signup")}>
+                Sign Up
+              </button>
+            </>
+          )}
         </div>
 
       </div>
